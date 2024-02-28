@@ -14,6 +14,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -76,7 +77,7 @@ private fun ScreenNavigationButton(
     }
     Surface(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(start = 8.dp, end = 8.dp, top = 8.dp),
         color = backgroundColor,
         shape = MaterialTheme.shapes.small
@@ -103,6 +104,17 @@ private fun ScreenNavigationButton(
                 modifier = Modifier.fillMaxWidth()
             )
         }
-
+    }
+}
+@Preview
+@Composable
+fun ScreenNavigationButtonPreview(){
+    NotesTheme {
+        ScreenNavigationButton(
+            icon = Icons.Filled.Home,
+            label = "Notes",
+            isSelected = true,
+            onClick = { }
+        )
     }
 }
