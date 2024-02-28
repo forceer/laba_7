@@ -1,6 +1,5 @@
 package ui.components
 
-import android.text.Layout.Alignment
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Alignment
+import com.topic2.android.notes.theme.NotesTheme
+
 
 @Composable
 private fun AppDrawerHeader(){
@@ -28,7 +30,7 @@ private fun AppDrawerHeader(){
         Text(
             text = "Заметки",
             modifier = Modifier
-                .align(alignment = androidx.compose.ui.Alignment.CenterVertically)
+                .align(alignment = Alignment.CenterVertically)
         )
     }
 }
@@ -36,7 +38,7 @@ private fun AppDrawerHeader(){
 @Preview
 @Composable
 fun AppDrawerHeaderPreview(){
-    JetNotesTheme {
+    NotesTheme {
         AppDrawerHeader()
     }
 }
