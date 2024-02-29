@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Checkbox
@@ -16,11 +17,12 @@ import androidx.compose.ui.unit.dp
 import com.topic2.android.notes.theme.rwGreen
 
 @Composable fun Note() {
-    Row(modifier = Modifier.fillMaxSize()) {
-        Box(
-            modifier = Modifier
-                .size(40.dp)
-                .background(rwGreen)
+    Row(modifier = Modifier.fillMaxWidth()) {
+        NoteColor(
+            color = rwGreen,
+            size = 40.dp,
+            padding = 4.dp,
+            border = 1.dp
         )
         Column(modifier = Modifier.weight(1f)) {
             Text(text = "Заголовок", maxLines = 1)
