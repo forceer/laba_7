@@ -32,6 +32,7 @@ val backgroundShape: Shape = RoundedCornerShape(4.dp)
             .background(Color.White, backgroundShape)
     ) {
         NoteColor(
+            modifier = Modifier.align(Alignment.CenterVertically),
             color = rwGreen,
             size = 40.dp,
             padding = 4.dp,
