@@ -1,4 +1,4 @@
-package ui.components
+package ui.components.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.topic2.android.notes.theme.rwGreen
+
 val backgroundShape: Shape = RoundedCornerShape(4.dp)
 @Composable fun Note() {
     Row(

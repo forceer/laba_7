@@ -14,8 +14,8 @@ import com.topic2.android.notes.theme.NotesTheme
 import com.topic2.android.notes.viewmodel.MainViewModel
 import com.topic2.android.notes.viewmodel.MainViewModelFactory
 import kotlinx.coroutines.launch
-import ui.components.AppDrawer
-import ui.components.Note
+import ui.components.components.AppDrawer
+import ui.components.components.Note
 
 /**
  * Main activity приложения.

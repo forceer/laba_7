@@ -1,6 +1,5 @@
-package ui.components
+package ui.components.components
 
-import android.media.Image
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
