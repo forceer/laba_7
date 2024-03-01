@@ -20,10 +20,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.topic2.android.notes.domain.model.NoteModel
 import com.topic2.android.notes.theme.rwGreen
+import com.topic2.android.notes.util.fromHex
 
 val backgroundShape: Shape = RoundedCornerShape(4.dp)
-@Composable fun Note() {
+@Composable fun Note(
+    note: NoteModel,
+    onNoteClick: (NoteModel) -> Unit = {},
+    onNoteCheckedChange: (NoteModel) -> Unit = {}
+) {
     Row(
         modifier = Modifier
             .padding(8.dp)
@@ -36,7 +42,7 @@ val backgroundShape: Shape = RoundedCornerShape(4.dp)
             modifier = Modifier
                 .align(Alignment.CenterVertically)
                 .padding(start = 16.dp, end = 16.dp),
-            color = rwGreen,
+            color = Color.fromHex(note.color.hex),
             size = 40.dp,
             border = 2.dp
         )
@@ -45,7 +51,7 @@ val backgroundShape: Shape = RoundedCornerShape(4.dp)
             .align(Alignment.CenterVertically)
         ) {
             Text(
-                text = "Заголовок",
+                text = note.title,
                 color = Color.Black,
                 maxLines = 1,
                 style = TextStyle(
@@ -55,7 +61,7 @@ val backgroundShape: Shape = RoundedCornerShape(4.dp)
                 )
             )
             Text(
-                text = "Содержимое",
+                text = note.content,
                 color = Color.Black.copy(alpha = 0.75f),
                 maxLines = 1,
                 style = TextStyle(
@@ -65,13 +71,15 @@ val backgroundShape: Shape = RoundedCornerShape(4.dp)
                 )
             )
         }
-        Checkbox(
-            checked = false,
-            onCheckedChange = {},
-            modifier = Modifier
-                .padding(start = 8.dp)
-                .align(Alignment.CenterVertically)
-        )
+        if (note.isCheckedOff != null) {
+            Checkbox(
+                checked = note.isCheckedOff,
+                onCheckedChange = {},
+                modifier = Modifier
+                    .padding(start = 16.dp)
+                    .align(Alignment.CenterVertically)
+            )
+        }
     }
 }
 @Preview
