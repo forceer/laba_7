@@ -1,6 +1,5 @@
 package ui.components.screens
 
-import android.provider.ContactsContract.CommonDataKinds.Note
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons

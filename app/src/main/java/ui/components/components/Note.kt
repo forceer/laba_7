@@ -22,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.topic2.android.notes.domain.model.NoteModel
-import com.topic2.android.notes.theme.rwGreen
 import com.topic2.android.notes.util.fromHex
 
 val backgroundShape: Shape = RoundedCornerShape(4.dp)
