@@ -2,10 +2,16 @@ package ui.components.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.materialIcon
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -52,6 +58,19 @@ fun NotesScreen(
                     coroutineScope.launch{
                         scaffoldState.drawerState.close()
                     }
+                }
+            )
+        },
+        floatingActionButtonPosition = FabPosition.End,
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { viewModel.onCreateNewNoteClick() },
+                contentColor = MaterialTheme.colors.background,
+                content = {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = "Add Note Botton"
+                    )
                 }
             )
         },
