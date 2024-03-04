@@ -5,17 +5,9 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.rememberCoroutineScope
-import com.topic2.android.notes.routing.Screen
 import com.topic2.android.notes.theme.NotesTheme
 import com.topic2.android.notes.viewmodel.MainViewModel
 import com.topic2.android.notes.viewmodel.MainViewModelFactory
-import kotlinx.coroutines.launch
-import ui.components.components.AppDrawer
-import ui.components.components.Note
 import ui.components.screens.NotesScreen
 
 /**
