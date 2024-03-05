@@ -69,8 +69,7 @@ private fun TopAppBarPreview(){
     NotesTheme {
         TopAppBar(
             title = "Заметки",
-            icon = Icons.Filled.List,
-            onIconClick = {}
-        )
+            icon = Icons.Filled.List
+        ) {}
     }
 }

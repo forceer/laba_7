@@ -11,7 +11,6 @@ import androidx.compose.material.ScaffoldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.materialIcon
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,7 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.topic2.android.notes.domain.model.NoteModel
 import com.topic2.android.notes.routing.Screen
 import com.topic2.android.notes.viewmodel.MainViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import ui.components.components.AppDrawer
 import ui.components.components.Note
@@ -42,13 +40,12 @@ fun NotesScreen(
     Scaffold(topBar = {
         TopAppBar(
             title = "Заметки",
-            icon = Icons.Filled.List,
-            onIconClick = {
-                coroutineScope.launch{
-                    scaffoldState.drawerState.open()
-                }
+            icon = Icons.Filled.List
+        ) {
+            coroutineScope.launch {
+                scaffoldState.drawerState.open()
             }
-        )
+        }
     },
         scaffoldState = scaffoldState,
         drawerContent = {
