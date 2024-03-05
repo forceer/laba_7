@@ -1,5 +1,6 @@
 package ui.components.screens
 
+import android.widget.CompoundButton.OnCheckedChangeListener
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -130,6 +131,27 @@ private fun PickedColor(color: ColorModel){
     }
 }
 @Composable
+private fun NoteCheckOption(
+    isChecked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+){
+    Row(
+        Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)) {
+       Text(
+           text = "Can note be checked off?",
+           modifier = Modifier.weight(1f)
+       )
+        Switch(
+            checked = isChecked,
+            onCheckedChange = onCheckedChange,
+            modifier = Modifier
+                .padding(start = 8.dp)
+        )
+    }
+}
+@Composable
 private fun ColorPicker(
     colors: List<ColorModel>,
     onColorSelect: (ColorModel) -> Unit
@@ -203,6 +225,11 @@ fun SaveNoteTopAppBarPreview(){
 @Composable
 fun PickedColorPreview(){
     PickedColor(ColorModel.DEFAULT)
+}
+@Preview
+@Composable
+fun NoteCheckedOptionPreview(){
+    NoteCheckOption(false){}
 }
 @Preview
 @Composable
