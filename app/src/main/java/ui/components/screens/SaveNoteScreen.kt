@@ -36,7 +36,99 @@ import com.topic2.android.notes.routing.Screen
 
 
 
+@Composable
+fun SaveNoteScreen(
+    viewModel: MainViewModel
+){
+    val noteEntry: NoteModel by viewModel.noteEntry.observeAsState(NoteModel())
 
+    Scaffold(topBar = {
+        val isEditingMode: Boolean = noteEntry.id != NEW_NOTE_ID
+        SaveNoteTopAppBar(
+            isEditingMode = isEditingMode,
+            onBackClick = {NotesRouter.navigateTo(Screen.Notes)},
+            onSaveNoteClick = {},
+            onOpenColorPickerClick = {},
+            onDeleteNoteClick = {}
+        )
+    },
+        content = {}
+    )
+}
+@Composable
+private fun SaveNoteTopAppBar(
+    isEditingMode: Boolean,
+    onBackClick: () -> Unit,
+    onSaveNoteClick: () -> Unit,
+    onOpenColorPickerClick: () -> Unit,
+    onDeleteNoteClick: () -> Unit
+){
+    TopAppBar(
+        title = {
+            Text(
+                text = "Save Note",
+                color = MaterialTheme.colors.onPrimary
+            )
+        },
+        navigationIcon = {
+            IconButton(onClick = onBackClick){
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Save Note Button",
+                    tint = MaterialTheme.colors.onPrimary
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = onSaveNoteClick) {
+                Icon(
+                    imageVector = Icons.Default.Check,
+                    tint = MaterialTheme.colors.onPrimary,
+                    contentDescription = "Save Note"
+                )
+            }
+            IconButton(onClick = onOpenColorPickerClick) {
+                Icon(
+                    painter = painterResource(
+                        id = R.drawable.ic_baseline_color_lens_24
+                    ),
+                    contentDescription = "Open Color Picker Button",
+                    tint = MaterialTheme.colors.onPrimary
+                )
+            }
+            if (isEditingMode){
+                IconButton(onClick = onDeleteNoteClick){
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete Note Button",
+                        tint = MaterialTheme.colors.onPrimary
+                    )
+                }
+            }
+        }
+    )
+}
+@Composable
+private fun PickedColor(color: ColorModel){
+    Row(
+        Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)
+    ){
+        Text(
+            text = "Picked color",
+            modifier = Modifier
+                .weight(1f)
+                .align(Alignment.CenterVertically)
+        )
+        NoteColor(
+            color = Color.fromHex(color.hex),
+            size = 40.dp,
+            border = 1.dp,
+            modifier = Modifier.padding(4.dp)
+        )
+    }
+}
 @Composable
 private fun ColorPicker(
     colors: List<ColorModel>,
@@ -94,78 +186,8 @@ fun ColorItem(
         )
     }
 }
-@Composable
-fun SaveNoteScreen(
-    viewModel: MainViewModel
-){
-    val noteEntry: NoteModel by viewModel.noteEntry.observeAsState(NoteModel())
 
-    Scaffold(topBar = {
-        val isEditingMode: Boolean = noteEntry.id != NEW_NOTE_ID
-        SaveNoteTopAppBar(
-            isEditingMode = isEditingMode,
-            onBackClick = {NotesRouter.navigateTo(Screen.Notes)},
-            onSaveNoteClick = {},
-            onOpenColorPickerClick = {},
-            onDeleteNoteClick = {}
-        )
-    },
-        content = {}
-    )
-}
-@Composable
-private fun SaveNoteTopAppBar(
-  isEditingMode: Boolean,
-  onBackClick: () -> Unit,
-  onSaveNoteClick: () -> Unit,
-  onOpenColorPickerClick: () -> Unit,
-  onDeleteNoteClick: () -> Unit
-){
-    TopAppBar(
-        title = {
-            Text(
-                text = "Save Note",
-                color = MaterialTheme.colors.onPrimary
-            )
-        },
-        navigationIcon = {
-            IconButton(onClick = onBackClick){
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Save Note Button",
-                    tint = MaterialTheme.colors.onPrimary
-                )
-            }
-        },
-        actions = {
-            IconButton(onClick = onSaveNoteClick) {
-                Icon(
-                    imageVector = Icons.Default.Check,
-                    tint = MaterialTheme.colors.onPrimary,
-                    contentDescription = "Save Note"
-                )
-            }
-            IconButton(onClick = onOpenColorPickerClick) {
-                Icon(
-                    painter = painterResource(
-                        id = R.drawable.ic_baseline_color_lens_24
-                    ),
-                    contentDescription = "Open Color Picker Button",
-                    tint = MaterialTheme.colors.onPrimary
-                )
-            }
-            if (isEditingMode){
-                IconButton(onClick = onDeleteNoteClick){
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete Note Button",
-                        tint = MaterialTheme.colors.onPrimary
-                    )
-                }
-            }
-        }
-    )
-}
+
 @Preview
 @Composable
 fun SaveNoteTopAppBarPreview(){
@@ -176,6 +198,11 @@ fun SaveNoteTopAppBarPreview(){
         onOpenColorPickerClick = {},
         onDeleteNoteClick = {}
     )
+}
+@Preview
+@Composable
+fun PickedColorPreview(){
+    PickedColor(ColorModel.DEFAULT)
 }
 @Preview
 @Composable
