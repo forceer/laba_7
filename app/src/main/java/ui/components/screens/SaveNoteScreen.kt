@@ -2,6 +2,7 @@ package ui.components.screens
 
 import android.annotation.SuppressLint
 import android.widget.CompoundButton.OnCheckedChangeListener
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -62,7 +63,15 @@ fun SaveNoteScreen(
     val moveNoteToTrashDialogShownState: MutableState<Boolean> = rememberSaveable {
         mutableStateOf(false)
     }
-
+    BackHandler(
+        onBack ={
+            if(bottomDrawerState.isOpen){
+                coroutineScope.launch { bottomDrawerState.close() }
+            } else{
+                NotesRouter.navigateTo(Screen.Notes)
+            }
+        }
+    )
     Scaffold(topBar = {
         val isEditingMode: Boolean = noteEntry.id != NEW_NOTE_ID
         SaveNoteTopAppBar(
@@ -98,8 +107,35 @@ fun SaveNoteScreen(
                             viewModel.onNoteEntryChange(updateNoteEntry)
                         }
                     )
-                }
+                },
             )
+            if(moveNoteToTrashDialogShownState.value){
+                AlertDialog(
+                    onDismissRequest = {
+                        moveNoteToTrashDialogShownState.value = false
+                    },
+                    text = {
+                        Text(
+                            "Are you sure you want to" +
+                                    "move this note to the trash"
+                        )
+                    },
+                    confirmButton = {
+                        TextButton(onClick = {
+                            viewModel.moveNoteToTrash(noteEntry)
+                        }) {
+                            Text("Confirm")
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = {
+                            moveNoteToTrashDialogShownState.value = false
+                        }) {
+                            Text("Dismiss")
+                        }
+                    }
+                )
+            }
         }
     )
 }
