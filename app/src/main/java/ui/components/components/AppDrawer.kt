@@ -126,13 +126,12 @@ fun ScreenNavigationButtonPreview(){
 }
 
 @Composable
-private fun LightdarkThemeItem(){
+private fun LightDarkThemeItem(){
     Row(
         Modifier
             .padding(8.dp)
-    ) {
-        Text(
-            text = "Turn dark theme",
+    ){
+        Text(text = "Включить темную тему",
             style = MaterialTheme.typography.body2,
             color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
             modifier = Modifier
@@ -140,9 +139,8 @@ private fun LightdarkThemeItem(){
                 .padding(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 8.dp)
                 .align(alignment = Alignment.CenterVertically)
         )
-        Switch(
-            checked = NotesThemeSettings.isDarkThemeEnabled,
-            onCheckedChange = { NotesThemeSettings.isDarkThemeEnabled = it},
+        Switch(checked = NotesThemeSettings.isDarkThemeEnabled,
+            onCheckedChange = {NotesThemeSettings.isDarkThemeEnabled = it},
             modifier = Modifier
                 .padding(start = 8.dp, end = 8.dp)
                 .align(alignment = Alignment.CenterVertically)
@@ -154,7 +152,7 @@ private fun LightdarkThemeItem(){
 @Composable
 fun LightDarkThemeItemPrewiew(){
     NotesTheme {
-        LightdarkThemeItem()
+        LightDarkThemeItem()
     }
 }
 @Composable
@@ -185,7 +183,7 @@ fun AppDrawer(
                     closeDrawerAction()
                 }
             )
-        LightdarkThemeItem()
+        LightDarkThemeItem()
     }
 }
 
